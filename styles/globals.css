@@ -1,16 +1,151 @@
+:root{
+  --white-no-hover: #919191;
+  --white: #EBEBEB;
+  --shadow-blue: #6881a0ff;
+  --burnt-sienna: #ee7a59ff;
+  --space-cadet: #20293cff;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Verdana, sans-serif;
+  background-color: var(--white);
+  min-width: 300px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* topNav */
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-* {
-  box-sizing: border-box;
+.cornnerimg{
+  display:block;
+  padding: 10px;
+  height: 60px;
+  width: 60px;
+}
+
+img{
+  border-radius: 50%;
+  width: inherit;
+  height: inherit;
+}
+
+.topNav{
+  background-color: var(--space-cadet) !important;
+  display:flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1;
+}
+.buttons{
+  display:inline-block;
+  vertical-align: middle;
+}
+.button{
+  color:var(--white-no-hover);
+  display:inline-block;
+  vertical-align: middle;
+  text-align: center;
+  margin:20px;
+  padding:10px;
+}
+.button:hover{
+  color:var(--white);
+  cursor: pointer;
+}
+
+/* content for page underneath top nav */
+.content{
+  margin-top: 85px;
+  color:black;
+}
+
+/* below is for the css for the experience page */
+.item{
+  display: inline-block;
+  vertical-align: middle;
+  color:inherit;
+  
+}
+.right{
+  padding: 10px 0px 10px 0px;
+}
+
+.topgrid{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.excontent{
+  display: inline-block;
+  vertical-align: middle;
+  width: fit-content;
+  word-wrap: break-word;
+}
+
+.breakline{
+  margin: 0px 20px 0px 20px;
+  height: 2px;
+  background-color: var(--shadow-blue);
+}
+.expage{
+  margin: 30px 10px 30px 10px;
+}
+.exmargin{
+  margin: 0px 0px 0px 230px;
+}
+.exoutline{
+  background-color: var(--burnt-sienna);
+  width: 205px;
+  height: 205px;
+  float:left;
+  margin: 0px 30px 0px 10px;
+  margin: 0;
+  border-radius: 50%;
+}
+.imgsize{
+  width: 200px;
+  height: 200px;
+  margin: 0;
+  margin: 0 auto;
+  padding: 2.5px;
+  position: relative;
+}
+
+/* page resizing by user only worry about width */
+@media screen and (max-width: 1026px) {
+  .cornnerimg{
+    display:block;
+    padding: 10px;
+    height: 40px;
+    width: 40px;
+  }
+  .button{
+    color:var(--white-no-hover);
+    display:inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin:10px;
+    padding: 15px 0px 15px 0px;
+    font-size: xx-small;
+  }
+  .wrapper{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+  }
+  .content{
+    margin-top: 65px;
+    color:black;
+  }
 }
