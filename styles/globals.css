@@ -52,7 +52,9 @@ img{
   display:inline-block;
   vertical-align: middle;
 }
-.button{
+
+a{
+  text-decoration: inherit;
   color:var(--white-no-hover);
   display:inline-block;
   vertical-align: middle;
@@ -60,7 +62,7 @@ img{
   margin:20px;
   padding:10px;
 }
-.button:hover{
+a:hover{
   color:var(--white);
   cursor: pointer;
 }

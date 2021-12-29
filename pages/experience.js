@@ -1,5 +1,8 @@
 import Image from 'next/image'
-import testimg from '../public/testimage400x400.jpg'
+// import testimg from '../public/testimage400x400.jpg'
+import Top_Nav from '../components/top_nav.js'
+
+let API_URL = 'http://localhost:5000/api';
 
 function Experience_card_left(props){ //make sure component names are uppaercase 
     //these also have to have the argument props to work with properties
@@ -12,19 +15,20 @@ function Experience_card_left(props){ //make sure component names are uppaercase
         //start date
         //end date
     //for right now
+
     return(
-        <div class="expage">
-            <div class="topgrid">
-                <h1 class="item">{props.company}</h1>
-                <p class="item right">{props.start_date} - {props.end_date}</p>
+        <div className="expage">
+            <div className="topgrid">
+                <h1 className="item">{props.company}</h1>
+                <p className="item right">{props.start_date} - {props.end_date}</p>
             </div>
-            <div class="excontent">
-                <div class="exoutline">
-                    <div class="content imgsize">
-                        <Image src={testimg}/>
+            <div className="excontent">
+                <div className="exoutline">
+                    <div className="content imgsize">
+                        <img src={props.img}/>
                     </div>
                 </div>
-                <div class="exmargin">
+                <div className="exmargin">
                     <span>Title: {props.title}</span>
                     <br/>
                     <span>Discription: {props.function}</span>
@@ -36,19 +40,31 @@ function Experience_card_left(props){ //make sure component names are uppaercase
     );
 }
 
-export default function experience(){
+
+
+export async function getStaticProps() {
+    const res = await fetch(API_URL + '/experience');
+    const data = await res.json();
+    return {
+      props: { data }, // will be passed to the page component as props
+    }
+}
+
+export default function experience({ data }){
+    const items = [];
+
+    for(const index of data){
+        // console.log(API_URL + '/experience_img/' + index.myindex + '.png');
+        items.push(<Experience_card_left company={index.company} start_date={index.start_date} end_date={index.end_date} title={index.title} function={index.function} duties={index.duties} img={API_URL + '/experience_img/' + index.myindex + '.png'}></Experience_card_left>);
+        items.push(<div className="breakline"></div>);
+    }
     return(
-        <div className="input_area">
-            {/* <div>experience page</div> */}
-            <Experience_card_left company="Siemens 1st Rotation" start_date="Feb 10, 2000" end_date="Feb 10, 2000" title="Coop/Intern" function="Develop internal angular app for sales team." duties="Implement new"></Experience_card_left>
-            <div class="breakline"></div>
-            <Experience_card_left company="Siemens 2nd Rotation"></Experience_card_left>
-            <div class="breakline"></div>
-            <Experience_card_left company="Siemens 3rd Rotation"></Experience_card_left>
-            <div class="breakline"></div>
-            <Experience_card_left company="ITI 4th Rotation"></Experience_card_left>
-            <div class="breakline"></div>
-            <Experience_card_left company="ITI 5th Rotation"></Experience_card_left>
+        <div>
+            <Top_Nav></Top_Nav>
+            <div className="content input_area">
+                {items}
+            </div>
         </div>
     );
 }
+
