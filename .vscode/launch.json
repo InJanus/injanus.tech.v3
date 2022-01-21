@@ -4,7 +4,6 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    
         {
             "name": "Python: API flask app",
             "type": "python",
@@ -16,9 +15,10 @@
             "jinja": true,
             "cwd": "${workspaceFolder}/api",
             "env": {
-                "FLASK_APP":"${workspaceFolder}/api/api.py",
-                "FLASK_ENV":"development",
-            }
+                "FLASK_APP": "${workspaceFolder}/api/api.py",
+                "FLASK_ENV": "development",
+            },
+            "linux": {}
         },
         {
             "type": "pwa-chrome",
