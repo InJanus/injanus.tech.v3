@@ -125,6 +125,18 @@ a:hover{
   position: relative;
 }
 
+/* homepage */
+.header{
+  text-align: center;
+  vertical-align: text-bottom;
+  font-size: 50px;
+  color: var(--space-cadet);
+}
+
+.padding{
+  padding: 150px 0px 0px 0px;
+}
+
 /* page resizing by user only worry about width */
 @media screen and (max-width: 1026px) {
   .cornnerimg{

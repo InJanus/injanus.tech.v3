@@ -9,6 +9,10 @@ CORS(app)
 
 filename = '../public/data/data.db'
 
+@app.route("/api/home", methods=['GET'])
+def get_home():
+    return jsonify(['test','test'])
+
 @app.route("/api/experience", methods=['GET'])
 def get_experience():
     con = sqlite3.connect(filename)
