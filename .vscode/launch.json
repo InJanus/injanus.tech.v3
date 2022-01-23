@@ -18,7 +18,9 @@
                 "FLASK_APP": "${workspaceFolder}/api/api.py",
                 "FLASK_ENV": "development",
             },
-            "linux": {}
+            "linux": {
+                // no changes are needed but make sure you have the latest version of node
+            }
         },
         {
             "type": "pwa-chrome",

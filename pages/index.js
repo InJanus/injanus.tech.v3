@@ -1,8 +1,7 @@
 //need to make a top bar to use
 import React from 'react';
 import Top_Nav from '../components/top_nav';
-
-let API_URL = 'http://localhost:5000/api';
+import { API_URL } from "../public/properties";
 
 export async function getStaticProps() {
   const res = await fetch(API_URL + '/home');

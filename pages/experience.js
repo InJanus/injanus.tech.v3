@@ -1,8 +1,5 @@
-import Image from 'next/image'
-// import testimg from '../public/testimage400x400.jpg'
 import Top_Nav from '../components/top_nav.js'
-
-let API_URL = 'http://localhost:5000/api';
+import { API_URL } from "../public/properties";
 
 function Experience_card_left(props){ //make sure component names are uppaercase 
     //these also have to have the argument props to work with properties
