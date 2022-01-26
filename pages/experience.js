@@ -1,5 +1,6 @@
 import Top_Nav from '../components/top_nav.js'
 import { API_URL } from "../public/properties";
+import style from '../styles/experience.module.css'
 
 function Experience_card_left(props){ //make sure component names are uppaercase 
     //these also have to have the argument props to work with properties
@@ -14,18 +15,18 @@ function Experience_card_left(props){ //make sure component names are uppaercase
     //for right now
 
     return(
-        <div className="expage">
-            <div className="topgrid">
-                <h1 className="item">{props.company}</h1>
-                <p className="item right">{props.start_date} - {props.end_date}</p>
+        <div className={style.expage}>
+            <div className={style.topgrid}>
+                <h1 className={style.item}>{props.company}</h1>
+                <p className={style.itemright}>{props.start_date} - {props.end_date}</p> 
             </div>
-            <div className="excontent">
-                <div className="exoutline">
-                    <div className="content imgsize">
+            <div className={style.excontent}>
+                <div className={style.exoutline}>
+                    <div className={style.imgsize}>
                         <img src={props.img}/>
                     </div>
                 </div>
-                <div className="exmargin">
+                <div className={style.exmargin}>
                     <span>Title: {props.title}</span>
                     <br/>
                     <span>Discription: {props.function}</span>

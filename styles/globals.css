@@ -14,101 +14,41 @@ body {
   background-color: var(--white);
   min-width: 300px;
 }
-
-/* topNav */
-.wrapper{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.cornnerimg{
-  display:block;
-  padding: 10px;
-  height: 60px;
-  width: 60px;
-}
-
-img{
-  border-radius: 50%;
-  width: inherit;
-  height: inherit;
-}
-
-.topNav{
-  background-color: var(--space-cadet) !important;
-  display:flex;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1;
-}
-.buttons{
-  display:inline-block;
-  vertical-align: middle;
-}
-
 a{
   text-decoration: inherit;
   color:var(--white-no-hover);
   display:inline-block;
   vertical-align: middle;
   text-align: center;
-  margin:20px;
-  padding:10px;
 }
 a:hover{
   color:var(--white);
   cursor: pointer;
 }
-
+img{
+  border-radius: 50%;
+  width: inherit;
+  height: inherit;
+}
 /* content for page underneath top nav */
 .content{
-  margin-top: 85px;
+  margin-top: 80px;
   color:black;
+  /* display: inline; */
 }
 
-/* below is for the css for the experience page */
-.item{
-  display: inline-block;
-  vertical-align: middle;
-  color:inherit;
-  
+/* project card */
+.pcard{
+  margin: 10px;
+  background-color: var(--burnt-sienna);
+  padding: 10px;
 }
-.right{
-  padding: 10px 0px 10px 0px;
-}
-
-.topgrid{
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-}
-
-.excontent{
-  display: inline-block;
-  vertical-align: middle;
-  width: fit-content;
-  word-wrap: break-word;
-}
-
-.breakline{
-  margin: 0px 20px 0px 20px;
-  height: 2px;
-  background-color: var(--shadow-blue);
-}
-.expage{
-  margin: 30px 10px 30px 10px;
-}
-.exmargin{
-  margin: 0px 0px 0px 230px;
+.imgdes{
+  text-align: center;
+  font-size: small;
 }
 .exoutline{
-  background-color: var(--burnt-sienna);
+  background-color:var(--shadow-blue);
   width: 205px;
   height: 205px;
   float:left;
@@ -124,6 +64,28 @@ a:hover{
   padding: 2.5px;
   position: relative;
 }
+.grid_display{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.contentincard{
+  width:min-content;
+}
+.discription_content{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width:100%;
+}
+.title{
+  margin: 0px;
+}
+.link_bottom{
+  color:var(--space-cadet);
+}
+.splitlist{
+  float:left;
+  width: 50%;
+}
 
 /* homepage */
 .header{
@@ -133,33 +95,12 @@ a:hover{
   color: var(--space-cadet);
 }
 
-.padding{
-  padding: 150px 0px 0px 0px;
+.breakline{
+    margin: 0px 20px 0px 20px;
+    height: 2px;
+    background-color: var(--shadow-blue);
 }
 
-/* page resizing by user only worry about width */
-@media screen and (max-width: 1026px) {
-  .cornnerimg{
-    display:block;
-    padding: 10px;
-    height: 40px;
-    width: 40px;
-  }
-  .button{
-    color:var(--white-no-hover);
-    display:inline-block;
-    vertical-align: middle;
-    text-align: center;
-    margin:10px;
-    padding: 15px 0px 15px 0px;
-    font-size: xx-small;
-  }
-  .wrapper{
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-  }
-  .content{
-    margin-top: 65px;
-    color:black;
-  }
+.padding{
+  padding: 150px 0px 0px 0px;
 }
