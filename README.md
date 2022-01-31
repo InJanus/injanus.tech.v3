@@ -18,3 +18,4 @@ To localhost the website, start the folowing scripts in parallel
 
 - https://nextjs.org/learn/basics/create-nextjs-app/setup
 - https://www.sqlite.org/cli.html
+- https://react-pdf.org/

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, send_file
+from flask import Flask, jsonify, send_file, request, abort
 from flask_cors import CORS
 import sqlite3
 import io
@@ -8,6 +8,10 @@ app = Flask(NAME)
 CORS(app)
 
 filename = '../public/data/data.db'
+
+@app.errorhandler(505)
+def databse_mismatch(e):
+    return jsonify(error=str("databse mismatch of databse and query occured")), 505
 
 @app.route("/api/home", methods=['GET'])
 def get_home():
@@ -47,3 +51,123 @@ def get_experience_img(pid):
     con.close()
     if pid >= 0 and pid <= len(myimg)-1:
         return send_file(io.BytesIO(myimg[pid]),mimetype='image/png',as_attachment=True,attachment_filename='%s.png' % pid)
+
+@app.route("/api/project/get_project_card", methods = ['GET'])
+def get_project_cards():
+    skills = request.args.get('skills', default= '', type = str) # general way to get text into the api from the url
+
+    con = sqlite3.connect(filename)
+    cur = con.cursor()
+
+    cur.execute('select * from project')
+    mycolumnames = []
+    for columnames in cur.description:
+        mycolumnames.append(columnames[0])
+    print(mycolumnames)
+
+    card_content = ['myindex','project_name','title','discription','des1','des2']
+    # images have to be gotten somewhere else
+    for card in card_content:
+        if card not in mycolumnames:
+            # one of the card content is not in the mycolumnames
+            abort(505) #abort call discription is above
+    
+    mycards = []
+    mytemp = {}
+    for myrows in cur.execute('select * from project'):        
+        for card in card_content:
+            if type(myrows[mycolumnames.index(card)]) != bytes:
+                mytemp[card] = myrows[mycolumnames.index(card)]
+        mycards.append(mytemp)
+        mytemp = {}
+      
+    con.commit()
+    con.close()
+    return jsonify(mycards)
+
+@app.route("/api/project/<string:project_name>", methods=['GET'])
+def get_project(project_name):
+    con = sqlite3.connect(filename)
+    cur = con.cursor()
+
+    cur.execute('select * from project')
+    mycolumnames = []
+    for columnames in cur.description:
+        mycolumnames.append(columnames[0])
+
+    mytemp = {}
+    for myrows in cur.execute('select * from project where project_name=?', (project_name,)):
+        for columnames in mycolumnames:
+            if type(myrows[mycolumnames.index(columnames)]) != bytes:
+                mytemp[columnames] = myrows[mycolumnames.index(columnames)]
+
+    return jsonify(mytemp)
+
+
+@app.route("/api/project_img/<string:project_name>/<int:pid>.png", methods=['GET'])
+def get_project_img(project_name, pid):
+    con = sqlite3.connect(filename)
+    cur = con.cursor()
+
+    cur.execute('select * from project')
+    mycolumnames = []
+    for columnames in cur.description:
+        mycolumnames.append(columnames[0])
+
+    card_content = ['img1', 'img2', 'img3', 'img4', 'img5', 'img6']
+    # images have to be gotten somewhere else
+    for card in card_content:
+        if card not in mycolumnames:
+            # one of the card content is not in the mycolumnames
+            abort(505) #abort call discription is above
+
+    myimg = []
+    for myrows in cur.execute("select * from project where project_name=?", (project_name,)):
+        for card in card_content:
+            if type(myrows[mycolumnames.index(card)]) == bytes:
+                # print(mycolumnames.index(card))
+                myimg.append(myrows[mycolumnames.index(card)])
+    print(len(myimg))
+
+    con.commit()
+    con.close()
+    if len(myimg) >= 1:
+        return send_file(io.BytesIO(myimg[pid]),mimetype='image/png',as_attachment=True,attachment_filename='%s.png' % pid)
+
+@app.route("/api/project_img/<string:project_name>", methods=['GET'])
+def get_project_img_count(project_name):
+    # this is the same thing as before just return the image count for each 
+    con = sqlite3.connect(filename)
+    cur = con.cursor()
+
+    cur.execute('select * from project')
+    mycolumnames = []
+    for columnames in cur.description:
+        mycolumnames.append(columnames[0])
+
+    card_content = ['img1', 'img2', 'img3', 'img4', 'img5', 'img6']
+    # images have to be gotten somewhere else
+    for card in card_content:
+        if card not in mycolumnames:
+            # one of the card content is not in the mycolumnames
+            abort(505) #abort call discription is above
+
+    myimg = []
+    for myrows in cur.execute("select * from project where project_name=?", (project_name,)):
+        for card in card_content:
+            if type(myrows[mycolumnames.index(card)]) == bytes:
+                # print(mycolumnames.index(card))
+                myimg.append(myrows[mycolumnames.index(card)])
+    
+    con.commit()
+    con.close()
+    return jsonify({"img_count": len(myimg)})
+
+# @app.route("/api/project/get_row_count", methods=['GET'])
+# def get_project_count():
+#     con = sqlite3.connect(filename)
+#     cur = con.cursor()
+
+#     cur.execute("select count(*) from project")
+#     mycount = cur.fetchall()
+#     return jsonify({"count": mycount[0][0]})

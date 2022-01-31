@@ -50,7 +50,6 @@ export async function getStaticProps() {
 
 export default function experience({ data }){
     const items = [];
-
     for(const index of data){
         // console.log(API_URL + '/experience_img/' + index.myindex + '.png');
         items.push(<Experience_card_left company={index.company} start_date={index.start_date} end_date={index.end_date} title={index.title} function={index.function} duties={index.duties} img={API_URL + '/experience_img/' + index.myindex + '.png'}></Experience_card_left>);
