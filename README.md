@@ -11,6 +11,7 @@ This project was written and debuged in VScode, running a local copy of the webs
 To localhost the website, start the folowing scripts in parallel
 
 1. **Run Script: dev**
+    - This may need to be added to the project via the "Node.js..." option in the RUN AND DEBUG dropdown
 2. **Python: API flask app**
 3. **Launch Chrome against localhost**
 
@@ -19,3 +20,8 @@ To localhost the website, start the folowing scripts in parallel
 - https://nextjs.org/learn/basics/create-nextjs-app/setup
 - https://www.sqlite.org/cli.html
 - https://react-pdf.org/
+
+### General Security Info
+
+- https://www.freecodecamp.org/news/best-practices-for-security-of-your-react-js-application/
+- https://relevant.software/blog/react-js-security-guide/

@@ -90,4 +90,5 @@ if __name__ == '__main__':
 
     with open(INPUT_FILENAME, "r") as file:
         for lines in file.readlines():
+            print(lines)
             insert_values(tuple(lines.split(',')))
