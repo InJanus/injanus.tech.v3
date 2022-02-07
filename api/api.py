@@ -165,23 +165,8 @@ def get_resume():
     con = sqlite3.connect(filename)
     cur = con.cursor()
 
-    cur.execute('select * from resume')
-    mycolumnames = []
-    for columnames in cur.description:
-        mycolumnames.append(columnames[0])
-
-    for myresumes in cur.execute("select resume_doc from resume")
-    
-    # card_content = ['resume_doc']
-    # # images have to be gotten somewhere else
-    # for card in card_content:
-    #     if card not in mycolumnames:
-    #         abort(505) #abort call discription is above
-# @app.route("/api/project/get_row_count", methods=['GET'])
-# def get_project_count():
-#     con = sqlite3.connect(filename)
-#     cur = con.cursor()
-
-#     cur.execute("select count(*) from project")
-#     mycount = cur.fetchall()
-#     return jsonify({"count": mycount[0][0]})
+    temp = 0
+    for myresumes in cur.execute("select * from resume"):
+        if temp < int(myresumes[0]):
+            top_resume = myresumes[1]
+    return send_file(io.BytesIO(top_resume),as_attachment=False,attachment_filename='resume.pdf')

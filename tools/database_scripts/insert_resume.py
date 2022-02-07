@@ -16,16 +16,13 @@ def insert_values(data_tuple):
     con = sqlite3.connect(FILENAME)
     cur = con.cursor()
 
-    insert_query = "INSERT INTO " + TABLENAME + "(resume_doc) VALUES (?)"
+    insert_query = "INSERT INTO " + TABLENAME + "(myindex, resume_doc) VALUES (?,?)"
     data_tuple = list(data_tuple)
 
     # below is unique to resume data
-    new_data = list()
-    print(data_tuple)
-    new_data.append([data_tuple[1], convertToBinaryData(data_tuple[0])])
+    data_tuple[1] = convertToBinaryData(data_tuple[1].strip())
 
-    # print(new_data)
-    data_tuple = tuple(new_data)
+    data_tuple = tuple(data_tuple)
     # print(insert_query, data_tuple)
     cur.execute(insert_query, data_tuple)
     con.commit()
