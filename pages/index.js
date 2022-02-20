@@ -16,7 +16,6 @@ export default function Index({ data }){
     //name
     //projects (name, pictures, )
     //skills (name of skill, link to project via id)
-    // console.log(data);
     return(
       <div>
         <Top_Nav></Top_Nav>
@@ -26,7 +25,7 @@ export default function Index({ data }){
           <div>Summary Bio</div>
           <div className='breakline'></div>
           <div className='header'><b>Skills</b></div>
-          <div className='breakline'></div>
+          {/* <div className='breakline'></div> */}
         </div>
       </div>
     );

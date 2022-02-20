@@ -59,7 +59,9 @@ export default function experience({ data }){
         <div>
             <Top_Nav></Top_Nav>
             <div className="content input_area">
-                {items}
+                <div className="center">
+                    {items}
+                </div>
             </div>
         </div>
     );

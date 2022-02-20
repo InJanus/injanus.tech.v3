@@ -30,14 +30,26 @@ img{
   width: inherit;
   height: inherit;
 }
+
 /* content for page underneath top nav */
 .content{
+  width: auto;
   margin-top: 80px;
   color:black;
+  align-items: center;
+  position: relative;
   /* display: inline; */
 }
-
-/* project card */
+.center{
+  margin: 0px auto 0px auto;
+  max-width: 1400px;
+}
+.breakline{
+  margin: 0px 10px 0px 10px;
+  height: 2px;
+  background-color: var(--shadow-blue);
+  max-width: 1400px;
+}
 
 /* homepage */
 .header{
@@ -46,13 +58,12 @@ img{
   font-size: 50px;
   color: var(--space-cadet);
 }
-
-.breakline{
-    margin: 0px 20px 0px 20px;
-    height: 2px;
-    background-color: var(--shadow-blue);
-}
-
 .padding{
   padding: 150px 0px 0px 0px;
+}
+
+@media screen and (max-width: 1020px) {
+  .content{
+    margin-top: 71px;
+  }
 }
