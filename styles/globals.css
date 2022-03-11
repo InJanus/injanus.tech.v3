@@ -30,6 +30,9 @@ img{
   width: inherit;
   height: inherit;
 }
+h2{
+  color: var(--space-cadet);
+}
 
 /* content for page underneath top nav */
 .content{

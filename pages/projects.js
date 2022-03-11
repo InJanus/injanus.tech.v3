@@ -2,34 +2,7 @@ import Top_Nav from "../components/top_nav";
 import Link from 'next/link'
 import { API_URL, LOCAL_URL } from "../public/properties"; //import api link
 import style from '../styles/projects.module.css'
-
-function ProjectCard(props){
-    //check notes for the Project card. i should finish this first before you work on the home page
-    //needs a name
-    //two caption pictures
-    //general discription
-    //and a see more button to go to another page about the project(this will be a dynamic page so plz resarch this in next js)
-
-    return(
-        <div className={style.pcard}>
-            <h1 className={style.title}>{props.name}</h1>
-            <div className={style.grid_display}>
-                <div className={style.contentincard}>
-                    <div className={style.imgsize}><img src={props.img1}></img></div>
-                    <div className={style.imgdes}>{props.imgdes1}</div>
-                </div>
-                <div className={style.contentincard}>
-                    <div className={style.imgsize}><img src={props.img2}></img></div>
-                    <div className={style.imgdes}>{props.imgdes2}</div>
-                </div>
-            </div>
-            <div>
-                <div className={style.discription_content}>{props.dis}</div>
-            </div>
-            <Link href={props.link}><a className={style.link_bottom}><b>See more</b></a></Link>
-        </div>
-    );
-}
+import Project_Card from "../components/project_card";
 
 export async function getStaticProps() {
     const res = await fetch(API_URL + '/project/get_project_card');
@@ -45,7 +18,7 @@ export default function Projects({ data }){
     const items = [];
 
     for(const index of data){
-        items.push(<ProjectCard name={index.title} imgdes1={index.des1} imgdes2={index.des2} dis={index.discription} link={LOCAL_URL + "/projects/" + index.project_name} img1={API_URL + "/project_img/" + index.project_name + "/0.png"} img2={API_URL + "/project_img/" + index.project_name + "/1.png"}></ProjectCard>);
+        items.push(<Project_Card name={index.title} imgdes1={index.des1} imgdes2={index.des2} dis={index.discription} link={LOCAL_URL + "/projects/" + index.project_name} img1={API_URL + "/project_img/" + index.project_name + "/0.png"} img2={API_URL + "/project_img/" + index.project_name + "/1.png"}></Project_Card>);
     }
     return(
         <div>

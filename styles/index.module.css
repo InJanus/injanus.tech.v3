@@ -1,0 +1,40 @@
+.summary{
+    text-align: center;
+}
+
+.skills_projects{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+.skills{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.projects{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.project_cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.project_card{
+    width: 100%;
+
+}
+
+.topIMG{
+    display: block;
+    align-content: center;
+}
+.main_img{
+    margin: auto;
+    width: 20%;
+}
