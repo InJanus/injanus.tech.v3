@@ -2,7 +2,7 @@ import Top_Nav from '../components/top_nav.js'
 import { API_URL } from "../public/properties";
 import style from '../styles/experience.module.css'
 
-function Experience_card_left(props){ //make sure component names are uppaercase 
+function Experience_Card(props){ //make sure component names are uppaercase 
     //these also have to have the argument props to work with properties
     //for this needs to be an repeatable card of data
     //info needed-
@@ -38,8 +38,6 @@ function Experience_card_left(props){ //make sure component names are uppaercase
     );
 }
 
-
-
 export async function getStaticProps() {
     const res = await fetch(API_URL + '/experience');
     const data = await res.json();
@@ -52,14 +50,16 @@ export default function experience({ data }){
     const items = [];
     for(const index of data){
         // console.log(API_URL + '/experience_img/' + index.myindex + '.png');
-        items.push(<Experience_card_left company={index.company} start_date={index.start_date} end_date={index.end_date} title={index.title} function={index.function} duties={index.duties} img={API_URL + '/experience_img/' + index.myindex + '.png'}></Experience_card_left>);
+        items.push(<Experience_Card company={index.company} start_date={index.start_date} end_date={index.end_date} title={index.title} function={index.function} duties={index.duties} img={API_URL + '/experience_img/' + index.myindex + '.png'}></Experience_Card>);
         items.push(<div className="breakline"></div>);
     }
     return(
         <div>
             <Top_Nav></Top_Nav>
             <div className="content input_area">
-                {items}
+                <div className="center">
+                    {items}
+                </div>
             </div>
         </div>
     );

@@ -26,7 +26,7 @@ def insert_values(data_tuple):
     data_tuple[0] = int(data_tuple[0])
 
     data_tuple = tuple(data_tuple)
-    print(insert_query, data_tuple)
+    # print(insert_query, data_tuple)
     cur.execute(insert_query, data_tuple)
     con.commit()
     con.close()
@@ -90,5 +90,5 @@ if __name__ == '__main__':
 
     with open(INPUT_FILENAME, "r") as file:
         for lines in file.readlines():
-            print(lines)
+            # print(lines)
             insert_values(tuple(lines.split(',')))

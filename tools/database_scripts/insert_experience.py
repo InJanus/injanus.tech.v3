@@ -21,7 +21,7 @@ def insert_values(data_tuple):
     data_tuple[4] = new_img
     data_tuple[0] = int(data_tuple[0])
     data_tuple = tuple(data_tuple)
-    print(insert_query, data_tuple)
+    # print(insert_query, data_tuple)
     cur.execute(insert_query, data_tuple)
     con.commit()
     con.close()
