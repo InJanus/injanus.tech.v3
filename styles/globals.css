@@ -56,3 +56,9 @@ img{
 .padding{
   padding: 150px 0px 0px 0px;
 }
+
+@media screen and (max-width: 1020px) {
+  .content{
+    margin-top: 71px;
+  }
+}

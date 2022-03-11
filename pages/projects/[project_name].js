@@ -6,6 +6,7 @@ function Post ({ data }){
   //title, discription and what i learned from it
   //as well as tags to related skills and file uploads
   //this is going to be the hardest part and a lot of backend work in python
+  console.log(data);
   return (
     <div>
       {data.title}
