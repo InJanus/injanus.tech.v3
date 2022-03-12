@@ -9,9 +9,26 @@ import style from '../styles/index.module.css';
 import Image from 'next/image'
 import profileImg from '../public/img/profile.jpg'
 
+
+async function getConnections(){
+  const res = await fetch(API_URL + '/home/connections');
+  await res.json().then(data => {
+    return data;
+  });
+  //for this it will return an image with a link attached,
+}
+
+async function getSkills(){
+  const res = await fetch(API_URL + '/home/connections');
+  await res.json().then(data => {
+    return data;
+  });
+}
+
 export async function getStaticProps() {
   const res = await fetch(API_URL + '/home');
-  const data = await res.json();
+  const data = await res.json().then();
+
   return {
     props: { data }, // will be passed to the page component as props
   }
@@ -22,23 +39,33 @@ export default function Index({ data }){
     //name
     //projects (name, pictures, )
     //skills (name of skill, link to project via id
+
+    // things to get fromt the api.
+      //profile image
+      // links to social media with pictures of each one and discriptions
+      // two sample projects
+      // list of skills
+    console.log(data);
+    getConnections();
     var index = {
       title: "test",
       des1: "test",
       des2: "test",
       discription: "test",
-
     }
     return(
-      <div>
+      <div className='content'>
         <Top_Nav></Top_Nav>
-        <div className='content'>
-          <div className='header padding'><b>Brian Culberson</b></div>
+        <div className='center'>
+          <div className={style.header_padding}><b>Brian Culberson</b></div>
           <div className={style.topIMG}>
             <div className={style.main_img}><Image src={profileImg}/></div>
-            <div>
-              <img></img>
-              <img></img>
+            <div className={style.connections}>
+              {/* list of connections to diffrent outlets
+              email, github, linked in, facebook?,  */}
+                <div className={style.connection_img}><Image src={profileImg}></Image></div>
+                <div className={style.connection_img}><Image src={profileImg}></Image></div>
+                <div className={style.connection_img}><Image src={profileImg}></Image></div>
             </div>
           </div>
           <div className='breakline'></div>
@@ -49,6 +76,7 @@ export default function Index({ data }){
           <div className={style.skills_projects}>
             <div className={style.skills}>
               <h2><b>Skills</b></h2>
+              {/* list of skills */}
             </div>
             <div className={style.projects}>
               <h2><b>Projects</b></h2>

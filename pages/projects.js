@@ -24,7 +24,7 @@ export default function Projects({ data }){
         <div>
             <Top_Nav></Top_Nav>
             <div className="content">
-                    <div className="center">
+                    <div className={style.center}>
                         <div className={style.splitlist}>
                             {items.slice(0, half)}
                             {/* <ProjectCard name="Testname" imgdes1="imgdes1" img1={API_URL + "/experience_img/0.png"} imgdes2="imgdes2" img2={API_URL + "/experience_img/0.png"} dis="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." link="/"></ProjectCard>

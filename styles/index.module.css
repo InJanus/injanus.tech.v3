@@ -5,7 +5,6 @@
 .skills_projects{
     display: grid;
     grid-template-columns: 1fr 1fr;
-
 }
 
 .skills{
@@ -21,20 +20,44 @@
 }
 
 .project_cards{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: inline;
+    align-items: center;
+    width: 100%;
 }
 
 .project_card{
-    width: 100%;
-
+    width: 70%;
+    margin: auto;
 }
 
 .topIMG{
     display: block;
-    align-content: center;
+    align-items: center;
 }
 .main_img{
     margin: auto;
-    width: 20%;
+    margin-top: 50px;
+    /* this will change below depends on the picture */
+    width: fit-content;
+}
+
+.connection_img{
+    width: 60px;
+    height: 60px;
+    margin: 0px 20px 0px 20px;
+    display: inline-block;
+}
+
+.connections{
+    align-items: center;
+    margin: 20px auto 20px auto;
+    width: fit-content;
+}
+
+.header_padding{
+    text-align: center;
+    vertical-align: text-bottom;
+    font-size: 50px;
+    color: var(--space-cadet);
+    padding: 50px 0px 0px 0px;
 }

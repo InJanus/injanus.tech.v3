@@ -43,6 +43,11 @@
     width: 50%;
 }
 
+.center{
+    margin: 0px auto 0px auto;
+    max-width: 1400px;
+}
+
 @media screen and (max-width: 1020px) {
     .splitlist{
         width: 100%;
@@ -51,6 +56,9 @@
     .imgsize{
         width: 100px;
         height: 100px;
+    }
+    .center{
+        margin-top: 82px;
     }
 }
   

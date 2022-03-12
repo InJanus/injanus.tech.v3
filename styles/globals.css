@@ -54,19 +54,8 @@ h2{
   max-width: 1400px;
 }
 
-/* homepage */
-.header{
-  text-align: center;
-  vertical-align: text-bottom;
-  font-size: 50px;
-  color: var(--space-cadet);
-}
-.padding{
-  padding: 150px 0px 0px 0px;
-}
-
 @media screen and (max-width: 1020px) {
   .content{
-    margin-top: 71px;
+    margin-top: 72px;
   }
 }
