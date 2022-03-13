@@ -57,7 +57,6 @@ def get_connection_img(pid):
     for imgs in cur.execute('select * from home'):
         for img in imgs:
             if(type(img) == bytes):
-                print('bytes!')
                 if first_img > 0:
                     first_img -= 1
                 else:
@@ -105,7 +104,6 @@ def get_experience_img(pid):
 @app.route("/api/project/get_project_card", methods = ['GET'])
 def get_project_cards():
     skills = request.args.get('skills', default= '', type = str) # general way to get text into the api from the url
-    names = request.args.get('names', default='', type = str) #input names into the api to search by
 
     con = sqlite3.connect(filename)
     cur = con.cursor()
