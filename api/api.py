@@ -15,7 +15,57 @@ def databse_mismatch(e):
 
 @app.route("/api/home", methods=['GET'])
 def get_home():
-    return jsonify(['test','test'])
+    con = sqlite3.connect(filename)
+    cur = con.cursor()
+
+    cur.execute('select * from home')
+    mycolumnames = []
+    for columnames in cur.description:
+        mycolumnames.append(columnames[0])
+
+    myret = []
+    mytemp = {}
+    for myrows in cur.execute('select * from home'):
+        for columnames in mycolumnames:
+            if type(myrows[mycolumnames.index(columnames)]) != bytes:
+                mytemp[columnames] = myrows[mycolumnames.index(columnames)]
+        myret.append(mytemp)
+        mytemp = {}
+
+    con.commit()
+    con.close()
+    return jsonify(myret)
+
+@app.route("/api/home_img/profile.png", methods=['GET'])
+def get_home_img():
+    con = sqlite3.connect(filename)
+    cur = con.cursor()
+    myimg = []
+    for img in cur.execute('select profile_img from home'):
+        myimg.append(img[0])
+    con.commit()
+    con.close()
+    if len(myimg) == 1:
+        return send_file(io.BytesIO(myimg[0]),mimetype='image/png',as_attachment=False,attachment_filename='%s.png' % 'profile')
+
+@app.route("/api/connection_img/<int:pid>.png", methods=['GET'])
+def get_connection_img(pid):
+    con = sqlite3.connect(filename)
+    cur = con.cursor()
+    myimg = []
+    first_img = 1
+    for imgs in cur.execute('select * from home'):
+        for img in imgs:
+            if(type(img) == bytes):
+                print('bytes!')
+                if first_img > 0:
+                    first_img -= 1
+                else:
+                    myimg.append(img)
+    con.commit()
+    con.close()
+    if pid >= 0 and pid <= len(myimg)-1:
+        return send_file(io.BytesIO(myimg[pid]),mimetype='image/png',as_attachment=False,attachment_filename='%s.png' % pid)
 
 @app.route("/api/experience", methods=['GET'])
 def get_experience():
@@ -102,7 +152,6 @@ def get_project(project_name):
                 mytemp[columnames] = myrows[mycolumnames.index(columnames)]
 
     return jsonify(mytemp)
-
 
 @app.route("/api/project_img/<string:project_name>/<int:pid>.png", methods=['GET'])
 def get_project_img(project_name, pid):

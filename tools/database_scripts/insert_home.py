@@ -39,11 +39,11 @@ def insert_values(data_tuple):
         if data_tuple[i+5]:
             data_tuple[i+5] = convertToBinaryData(data_tuple[i+5])
     # data_tuple[0] = int(data_tuple[0])
-    print(len(data_tuple))
+    # print(len(data_tuple))
 
 
     data_tuple = tuple(data_tuple)
-    print(len(data_tuple))
+    # print(len(data_tuple))
 
     # print(insert_query, data_tuple)
     cur.execute(insert_query, data_tuple)
@@ -84,8 +84,8 @@ if __name__ == "__main__":
             tablevalues += "        connection_link" + str(i+1) + " TEXT,\n"
     tablevalues += "    )\n"
 
-    print(tablevalues)
-    print("CREATE TABLE " + TABLENAME + tablevalues)
+    # print(tablevalues)
+    # print("CREATE TABLE " + TABLENAME + tablevalues)
     cur.execute("CREATE TABLE " + TABLENAME + tablevalues)
     con.commit()
     con.close()
