@@ -32,6 +32,23 @@ async function getSkills(){
 //   });
 // }
 
+function connectionList(data){
+  const list = [];
+  let i = 0;
+  while(data['connection_link' + i]){
+    list.push(<a key={i} href={data['connection_link' + i]} className={style.connection_img}><img src={API_URL + '/connection_img/' + i + '.png'}/></a>);
+    i++;
+  }
+  return list;
+}
+
+function skillList(){
+  //get skills
+
+
+
+}
+
 export async function getStaticProps() {
   const res = await fetch(API_URL + '/home');
   const data = await res.json();
@@ -66,6 +83,7 @@ export default function Index({ data, project1, project2, skills }){
       skills_html.push(<div>{skill}</div>)
     }
 
+    const connections = connectionList(data[0]);
     return(
       <div className='content'>
         <Top_Nav></Top_Nav>
@@ -75,10 +93,10 @@ export default function Index({ data, project1, project2, skills }){
             <div className={style.main_img}><img src={API_URL + '/home_img/profile.png'}/></div>
             <div className={style.connections}>
               {/* list of connections to diffrent outlets
-              email, github, linked in, facebook?,  */}
-                <a href={data[0].connection_link1} className={style.connection_img}><img src={API_URL + '/connection_img/0.png'}/></a>
-                <a href={data[0].connection_link2} className={style.connection_img}><img src={API_URL + '/connection_img/1.png'}/></a>
-                <a href={data[0].connection_link3} className={style.connection_img}><img src={API_URL + '/connection_img/2.png'}/></a>
+              email, github, linked in, facebook?,  */
+              // this needs to be looped as well to get it to work with multiple connections
+              }
+                {connections}
             </div>
           </div>
           <div className='breakline'></div>
@@ -89,7 +107,7 @@ export default function Index({ data, project1, project2, skills }){
           <div className={style.skills_projects}>
             <div className={style.skills}>
               <h2><b>Skills</b></h2>
-              <div>{skills_html}</div>
+              <div className={style.skill_list}>{skills_html}</div>
             </div>
             <div className={style.projects}>
               <h2><b>Projects</b></h2>
