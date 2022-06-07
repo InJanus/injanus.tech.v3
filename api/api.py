@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import Flask, jsonify, send_file, request, abort
 from flask_cors import CORS
 import sqlite3
@@ -57,7 +58,6 @@ def get_connection_img(pid):
     for imgs in cur.execute('select * from home'):
         for img in imgs:
             if(type(img) == bytes):
-                print('bytes!')
                 if first_img > 0:
                     first_img -= 1
                 else:
@@ -220,3 +220,17 @@ def get_resume():
         if temp < int(myresumes[0]):
             top_resume = myresumes[1]
     return send_file(io.BytesIO(top_resume),as_attachment=False,attachment_filename='resume.pdf')
+
+@app.route("/api/get_skills", methods=['GET'])
+def get_skills():
+    con = sqlite3.connect(filename)
+    cur = con.cursor()
+
+    mytemp = []
+    count = 0
+    for myrows in cur.execute('select skills from project'):
+        for skill in myrows[0].split(';'):
+            if skill not in mytemp:
+                mytemp.append(skill)
+
+    return jsonify(mytemp)

@@ -18,6 +18,13 @@ async function getProjects(project_name){
   //for this it will return an image with a link attached,
 }
 
+async function getSkills(){
+  //just a general list of skills
+  const res = await fetch(API_URL + '/get_skills');
+  const data = await res.json();
+  return data;
+}
+
 // async function getSkills(){
 //   const res = await fetch(API_URL + '/home/connections');
 //   await res.json().then(data => {
@@ -31,16 +38,18 @@ export async function getStaticProps() {
 
   const project1 = await getProjects(data[0].project1);
   const project2 = await getProjects(data[0].project2);
+  const skills = await getSkills();
   return {
     props: { 
       data,
       project1,
-      project2
+      project2,
+      skills
     }, // will be passed to the page component as props
   }
 }
 
-export default function Index({ data, project1, project2 }){
+export default function Index({ data, project1, project2, skills }){
     //discription
     //name
     //projects (name, pictures, )
@@ -51,7 +60,12 @@ export default function Index({ data, project1, project2 }){
       // links to social media with pictures of each one and discriptions
       // two sample projects
       // list of skills
-    
+    console.log(skills);
+    let skills_html = [];
+    for(const skill of skills){
+      skills_html.push(<div>{skill}</div>)
+    }
+
     return(
       <div className='content'>
         <Top_Nav></Top_Nav>
@@ -75,7 +89,7 @@ export default function Index({ data, project1, project2 }){
           <div className={style.skills_projects}>
             <div className={style.skills}>
               <h2><b>Skills</b></h2>
-              {/* list of skills */}
+              <div>{skills_html}</div>
             </div>
             <div className={style.projects}>
               <h2><b>Projects</b></h2>
