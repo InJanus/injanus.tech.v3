@@ -38,7 +38,7 @@ function Experience_Card(props){ //make sure component names are uppaercase
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const res = await fetch(API_URL + '/experience');
     const data = await res.json();
     return {
