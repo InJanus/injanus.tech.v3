@@ -17,7 +17,7 @@ def databse_mismatch(e):
 def get_home():
     con = sqlite3.connect(filename)
     cur = con.cursor()
-
+    
     cur.execute('select * from home')
     mycolumnames = []
     for columnames in cur.description:
@@ -103,7 +103,8 @@ def get_experience_img(pid):
 
 @app.route("/api/project/get_project_card", methods = ['GET'])
 def get_project_cards():
-    skills = request.args.get('skills', default= '', type = str) # general way to get text into the api from the url
+    skill = request.args.get('skill', default= '', type = str) # general way to get text into the api from the url
+    print(skill)
 
     con = sqlite3.connect(filename)
     cur = con.cursor()

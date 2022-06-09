@@ -4,11 +4,7 @@ import Top_Nav from '../components/top_nav';
 import Project_Card from '../components/project_card';
 import { API_URL, LOCAL_URL } from "../public/properties"; //import api link
 import style from '../styles/index.module.css';
-
-// temporary
-import Image from 'next/image'
-import profileImg from '../public/img/profile.jpg'
-
+import Link from 'next/link'
 
 async function getProjects(project_name){
   const res = await fetch(API_URL + '/project/' + project_name);
@@ -74,6 +70,18 @@ export default function Index({ data, project1, project2 }){
       // links to social media with pictures of each one and discriptions
       // two sample projects
       // list of skills
+    let skills = <ul className={style.skill_list}>
+      <li className={style.skill}><b><Link href={LOCAL_URL}>Skill1</Link></b></li>
+      <li className={style.skill}><b>Skill2</b></li>
+      <li className={style.skill}><b>Skill1</b></li>
+      <li className={style.skill}><b>Skill2</b></li>
+      <li className={style.skill}><b>Skill1</b></li>
+      <li className={style.skill}><b>Skill2</b></li>
+      <li className={style.skill}><b>Skill1</b></li>
+      <li className={style.skill}><b>Skill2</b></li>
+      <li className={style.skill}><b>Skill1</b></li>
+      <li className={style.skill}><b>Skill2</b></li>
+    </ul>
     const connections = connectionList(data[0]);
     return(
       <div className='content'>
@@ -98,9 +106,8 @@ export default function Index({ data, project1, project2 }){
           <div className={style.skills_projects}>
             <div className={style.skills}>
               <h2><b>Skills</b></h2>
-              <div className={style.skill_list}>
-
-              </div>
+              
+                {skills}
               {/* list of skills */}
             </div>
             <div className={style.projects}>

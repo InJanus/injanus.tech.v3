@@ -1,11 +1,17 @@
 import Top_Nav from "../components/top_nav";
-import Link from 'next/link'
 import { API_URL, LOCAL_URL } from "../public/properties"; //import api link
 import style from '../styles/projects.module.css'
 import Project_Card from "../components/project_card";
+// import { useRouter } from "next/router";
 
-export async function getStaticProps() {
-    const res = await fetch(API_URL + '/project/get_project_card');
+export async function getServerSideProps({ query }) {
+    let link = API_URL + '/project/get_project_card';
+    if(query.skill){
+        // skill exists to make the link include it
+        link = link + '?skill=' + query.skill;
+    }
+
+    const res = await fetch(link);
     const data = await res.json();
     
     return {
