@@ -21,12 +21,6 @@ async function getSkills(){
   return data;
 }
 
-// async function getSkills(){
-//   const res = await fetch(API_URL + '/home/connections');
-//   await res.json().then(data => {
-//     return data;
-//   });
-// }
 
 function connectionList(data){
   const list = [];
