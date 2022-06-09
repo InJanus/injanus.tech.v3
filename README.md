@@ -10,6 +10,8 @@ This project was written and debuged in VScode, running a local copy of the webs
 
 To localhost the website, start the folowing scripts in parallel
 
+Make sure to set the interpreter for the conda enviroment before you run the api
+
 1. **Run Script: dev**
     - This may need to be added to the project via the "Node.js..." option in the RUN AND DEBUG dropdown
 2. **Python: API flask app**

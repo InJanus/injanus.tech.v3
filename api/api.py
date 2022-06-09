@@ -18,7 +18,7 @@ def databse_mismatch(e):
 def get_home():
     con = sqlite3.connect(filename)
     cur = con.cursor()
-
+    
     cur.execute('select * from home')
     mycolumnames = []
     for columnames in cur.description:
