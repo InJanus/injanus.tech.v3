@@ -15,7 +15,10 @@ async function getProjects(project_name){
 }
 
 async function getSkills(){
-
+  //just a general list of skills
+  const res = await fetch(API_URL + '/get_skills');
+  const data = await res.json();
+  return data;
 }
 
 // async function getSkills(){
@@ -48,18 +51,18 @@ export async function getStaticProps() {
 
   const project1 = await getProjects(data[0].project1);
   const project2 = await getProjects(data[0].project2);
-  // const skills = await getSkills();
+  const skills = await getSkills();
   return {
     props: { 
       data,
       project1,
-      project2
-      // skills
+      project2,
+      skills
     }, // will be passed to the page component as props
   }
 }
 
-export default function Index({ data, project1, project2 }){
+export default function Index({ data, project1, project2, skills }){
     //discription
     //name
     //projects (name, pictures, )
@@ -70,18 +73,12 @@ export default function Index({ data, project1, project2 }){
       // links to social media with pictures of each one and discriptions
       // two sample projects
       // list of skills
-    let skills = <ul className={style.skill_list}>
-      <li className={style.skill}><b><Link href={LOCAL_URL}>Skill1</Link></b></li>
-      <li className={style.skill}><b>Skill2</b></li>
-      <li className={style.skill}><b>Skill1</b></li>
-      <li className={style.skill}><b>Skill2</b></li>
-      <li className={style.skill}><b>Skill1</b></li>
-      <li className={style.skill}><b>Skill2</b></li>
-      <li className={style.skill}><b>Skill1</b></li>
-      <li className={style.skill}><b>Skill2</b></li>
-      <li className={style.skill}><b>Skill1</b></li>
-      <li className={style.skill}><b>Skill2</b></li>
-    </ul>
+    console.log(skills);
+    let skills_html = [];
+    for(const skill of skills){
+      skills_html.push(<div>{skill}</div>)
+    }
+
     const connections = connectionList(data[0]);
     return(
       <div className='content'>
@@ -106,9 +103,7 @@ export default function Index({ data, project1, project2 }){
           <div className={style.skills_projects}>
             <div className={style.skills}>
               <h2><b>Skills</b></h2>
-              
-                {skills}
-              {/* list of skills */}
+              <div className={style.skill_list}>{skills_html}</div>
             </div>
             <div className={style.projects}>
               <h2><b>Projects</b></h2>
