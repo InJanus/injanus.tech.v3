@@ -4,7 +4,7 @@ import Top_Nav from '../components/top_nav';
 import Project_Card from '../components/project_card';
 import { API_URL, LOCAL_URL } from "../public/properties"; //import api link
 import style from '../styles/index.module.css';
-import Link from 'next/link'
+import Link from 'next/link';
 
 async function getProjects(project_name){
   const res = await fetch(API_URL + '/project/' + project_name);
@@ -21,7 +21,6 @@ async function getSkills(){
   return data;
 }
 
-
 function connectionList(data){
   const list = [];
   let i = 0;
@@ -32,14 +31,7 @@ function connectionList(data){
   return list;
 }
 
-function skillList(){
-  //get skills
-
-
-
-}
-
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(API_URL + '/home');
   const data = await res.json();
 
@@ -67,10 +59,9 @@ export default function Index({ data, project1, project2, skills }){
       // links to social media with pictures of each one and discriptions
       // two sample projects
       // list of skills
-    console.log(skills);
     let skills_html = [];
     for(const skill of skills){
-      skills_html.push(<div>{skill}</div>)
+      skills_html.push(<Link href={LOCAL_URL + '/projects?skills=' + skill}><a className={style.skill_card}><b>{skill.toUpperCase()}</b></a></Link>)
     }
 
     const connections = connectionList(data[0]);

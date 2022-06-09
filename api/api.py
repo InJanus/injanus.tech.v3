@@ -104,8 +104,8 @@ def get_experience_img(pid):
 
 @app.route("/api/project/get_project_card", methods = ['GET'])
 def get_project_cards():
-    skill = request.args.get('skill', default= '', type = str) # general way to get text into the api from the url
-    print(skill)
+    skills = request.args.get('skills', default= '', type = str) # general way to get text into the api from the url
+    print("myskills: ", skills)
 
     con = sqlite3.connect(filename)
     cur = con.cursor()
@@ -232,5 +232,13 @@ def get_skills():
         for skill in myrows[0].split(';'):
             if skill not in mytemp:
                 mytemp.append(skill)
-
+                if count > 0:
+                    for i in range(count, 0, -1):
+                        if mytemp[i] < mytemp[i-1]:
+                            temp = mytemp[i]
+                            mytemp[i] = mytemp[i-1]
+                            mytemp[i-1] = temp 
+                count+=1
+    # i am going to try to sort the list here i am also trying to think of a way to sort it while you input the list
+    #i have one idea is to just to have an insertion sort as you insert items in the list
     return jsonify(mytemp)

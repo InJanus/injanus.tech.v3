@@ -2,24 +2,21 @@ import Top_Nav from "../components/top_nav";
 import { API_URL, LOCAL_URL } from "../public/properties"; //import api link
 import style from '../styles/projects.module.css'
 import Project_Card from "../components/project_card";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps({ query }) {
-    let link = API_URL + '/project/get_project_card';
-    if(query.skill){
-        // skill exists to make the link include it
-        link = link + '?skill=' + query.skill;
-    }
-
-    const res = await fetch(link);
+    const skills = query.skills;
+    const res = await fetch(API_URL + '/project/get_project_card' + '?skills=' + skills);
     const data = await res.json();
-    
+
     return {
-      props: { data }, // will be passed to the page component as props
+      props: { data, skills }, // will be passed to the page component as props
     }
 }
 
-export default function Projects({ data }){
+export default function Projects({ data, skills }){
+    console.log(skills);
+
     const half = (data.length)/2;
     const items = [];
 
