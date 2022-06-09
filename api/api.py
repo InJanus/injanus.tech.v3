@@ -1,4 +1,4 @@
-from crypt import methods
+# from crypt import methods
 from flask import Flask, jsonify, send_file, request, abort
 from flask_cors import CORS
 import sqlite3
