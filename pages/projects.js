@@ -10,18 +10,16 @@ export async function getServerSideProps({ query }) {
     const data = await res.json();
 
     return {
-      props: { data, skills }, // will be passed to the page component as props
+      props: { data }, // will be passed to the page component as props
     }
 }
 
-export default function Projects({ data, skills }){
-    console.log(skills);
-
+export default function Projects({ data }){
     const half = (data.length)/2;
     const items = [];
 
     for(const index of data){
-        items.push(<Project_Card name={index.title} imgdes1={index.des1} imgdes2={index.des2} dis={index.discription} link={LOCAL_URL + "/projects/" + index.project_name} img1={API_URL + "/project_img/" + index.project_name + "/0.png"} img2={API_URL + "/project_img/" + index.project_name + "/1.png"}></Project_Card>);
+        items.push(<Project_Card key={index.title} name={index.title} imgdes1={index.des1} imgdes2={index.des2} dis={index.discription} link={LOCAL_URL + "/projects/" + index.project_name} img1={API_URL + "/project_img/" + index.project_name + "/0.png"} img2={API_URL + "/project_img/" + index.project_name + "/1.png"}></Project_Card>);
     }
     return(
         <div>

@@ -86,5 +86,11 @@
     .main_img{
         width: 70%;
     }
-    
+    .header_padding{
+        font-size: 40px;
+        padding: 40px 0px 0px 0px;
+    }
+    .main_img{
+        margin-top: 20px;
+    }
 }

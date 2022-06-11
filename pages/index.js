@@ -61,7 +61,7 @@ export default function Index({ data, project1, project2, skills }){
       // list of skills
     let skills_html = [];
     for(const skill of skills){
-      skills_html.push(<Link href={LOCAL_URL + '/projects?skills=' + skill}><a className={style.skill_card}><b>{skill.toUpperCase()}</b></a></Link>)
+      skills_html.push(<Link key={skill} href={LOCAL_URL + '/projects?skills=' + skill}><a className={style.skill_card}><b>{skill.toUpperCase()}</b></a></Link>)
     }
 
     const connections = connectionList(data[0]);

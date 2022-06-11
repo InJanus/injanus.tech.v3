@@ -10,7 +10,7 @@ export default function resume(){
     return(
         <div>
             <Top_Nav></Top_Nav>
-            <div class="content">
+            <div className="content">
                 <object data={API_URL + "/get_resume/resume.pdf"} type="application/pdf" width="100%" height="1200px"></object>
             </div>
         </div>

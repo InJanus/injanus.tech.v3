@@ -104,8 +104,9 @@ def get_experience_img(pid):
 
 @app.route("/api/project/get_project_card", methods = ['GET'])
 def get_project_cards():
-    skills = request.args.get('skills', default= '', type = str) # general way to get text into the api from the url
-    print("myskills: ", skills)
+    skills = request.args.get('skills', default="") # general way to get text into the api from the url
+
+    # print("myskills: ", skills)
 
     con = sqlite3.connect(filename)
     cur = con.cursor()
@@ -115,7 +116,7 @@ def get_project_cards():
     for columnames in cur.description:
         mycolumnames.append(columnames[0])
 
-    card_content = ['myindex','project_name','title','discription','des1','des2']
+    card_content = ['myindex','project_name','title','discription','des1','des2', 'skills']
     # images have to be gotten somewhere else
     for card in card_content:
         if card not in mycolumnames:
@@ -124,13 +125,24 @@ def get_project_cards():
     
     mycards = []
     mytemp = {}
-    for myrows in cur.execute('select * from project'):        
-        for card in card_content:
-            if type(myrows[mycolumnames.index(card)]) != bytes:
-                mytemp[card] = myrows[mycolumnames.index(card)]
-        mycards.append(mytemp)
-        mytemp = {}
-      
+    # ('select * from project where project_name=?', (project_name,))
+    if skills == "undefined":
+        for myrows in cur.execute('select * from project'):        
+            for card in card_content:
+                if type(myrows[mycolumnames.index(card)]) != bytes:
+                    mytemp[card] = myrows[mycolumnames.index(card)]
+            mycards.append(mytemp)
+            mytemp = {}
+    else:
+        for myrows in cur.execute('select * from project'):        
+            for card in card_content:
+                if skills in myrows[mycolumnames.index('skills')]:
+                    if type(myrows[mycolumnames.index(card)]) != bytes:
+                        mytemp[card] = myrows[mycolumnames.index(card)]
+            if mytemp != {}:
+                mycards.append(mytemp)
+            mytemp = {}
+    print(mycards)
     con.commit()
     con.close()
     return jsonify(mycards)

@@ -50,8 +50,8 @@ export default function experience({ data }){
     const items = [];
     for(const index of data){
         // console.log(API_URL + '/experience_img/' + index.myindex + '.png');
-        items.push(<Experience_Card company={index.company} start_date={index.start_date} end_date={index.end_date} title={index.title} function={index.function} duties={index.duties} img={API_URL + '/experience_img/' + index.myindex + '.png'}></Experience_Card>);
-        items.push(<div className="breakline"></div>);
+        items.push(<Experience_Card key={index.myindex} company={index.company} start_date={index.start_date} end_date={index.end_date} title={index.title} function={index.function} duties={index.duties} img={API_URL + '/experience_img/' + index.myindex + '.png'}></Experience_Card>);
+        items.push(<div key={index.start_date} className="breakline"></div>);
     }
     return(
         <div>
