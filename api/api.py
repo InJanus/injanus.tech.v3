@@ -106,8 +106,6 @@ def get_experience_img(pid):
 def get_project_cards():
     skills = request.args.get('skills', default="") # general way to get text into the api from the url
 
-    # print("myskills: ", skills)
-
     con = sqlite3.connect(filename)
     cur = con.cursor()
 
@@ -142,7 +140,6 @@ def get_project_cards():
             if mytemp != {}:
                 mycards.append(mytemp)
             mytemp = {}
-    print(mycards)
     con.commit()
     con.close()
     return jsonify(mycards)

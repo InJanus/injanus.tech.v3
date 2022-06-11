@@ -83,7 +83,7 @@ if __name__ == '__main__':
         des6 TEXT
     )
     """
-    print("CREATE TABLE " + TABLENAME + tablevalues)
+    # print("CREATE TABLE " + TABLENAME + tablevalues)
     cur.execute("CREATE TABLE " + TABLENAME + tablevalues)
     
     con.commit()

@@ -21,6 +21,7 @@
     /* display: grid;
     grid-template-columns: 2fr 1fr; */
     display: inline-block;
+    margin-top: 10px;
 }
 .contentincard{
     width:min-content;

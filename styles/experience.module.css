@@ -11,6 +11,7 @@
     vertical-align: middle;
     color:inherit;
     padding: 10px 0px 10px 0px;
+    font-size: 16px;
 }
 
 .topgrid{
@@ -30,6 +31,7 @@
 }
 .exmargin{
     margin: 0px 0px 0px 230px;
+    font-size: 18px;
 }
 .exoutline{
     background-color: var(--burnt-sienna);
@@ -60,7 +62,6 @@
   }
   .exmargin{
     margin: 0px 0px 0px 115px;
-    font-size: x-small;
   }
   .topgrid{
     grid-template-columns: 2fr 1fr;
@@ -69,6 +70,6 @@
       font-size: x-large;
   }
   .itemright{
-      font-size: small;
+      font-size: 14px;
   }
 }
