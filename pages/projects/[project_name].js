@@ -1,4 +1,7 @@
+import Top_Nav from "../../components/top_nav";
 import { API_URL } from "../../public/properties";
+import style from "../../styles/project_name.module.css";
+import Link from 'next/link';
 
 function Post ({ data }){
   // console.log(data);
@@ -6,10 +9,47 @@ function Post ({ data }){
   //title, discription and what i learned from it
   //as well as tags to related skills and file uploads
   //this is going to be the hardest part and a lot of backend work in python
+
+  {/* these might get to be modal images if i can figure out how to do it */}
+              {/* what i am looking for is to just get a bigger version of the images but i dont want it to show from the api */}
+              {/* modal images is a good way to show a larger image without getting rid of  */}
+              {/* for right now it links to the api. i want to change this but this wont stop me from pushing the website without it */}
+
+  let pic_list = [];
+  for (let index = 0; index < 6; index++){
+    pic_list.push(<div className={style.contentincard}>
+      <div className={style.imgsize}>
+        <Link href={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"}><img src={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"}></img></Link>
+      </div>
+      <div className={style.imgdes}>{data["des" + String(index+1)]}</div>
+      </div>)
+  }
+  
   console.log(data);
   return (
-    <div>
-      {data.title}
+    <div className="content">
+      <Top_Nav></Top_Nav>
+      <div className="center">
+        <div>
+          <h1 className={style.title}><b>{data.title}</b></h1>
+          <div className={style.centered_img}>
+            <div className={style.myimgs}>
+              {pic_list}
+            </div>
+          </div>
+          <div className="breakline"></div>
+          <div>
+            <div className={style.discription}>
+              <div className={style.title}>Discription</div>
+              <div>{data.discription}</div>
+            </div>
+            <div className={style.learned}>
+              <div className={style.title}>Lessons Learned</div>
+              <div>{data.learned}</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
