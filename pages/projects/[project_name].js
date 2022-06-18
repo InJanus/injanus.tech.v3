@@ -19,7 +19,7 @@ function Post ({ data, imgCount }){
   for (let index = 0; index < imgCount.count; index++){
     pic_list.push(<div className={style.contentincard}>
       <div className={style.imgsize}>
-        <Link href={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"}><img src={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"}></img></Link>
+        <Link href={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"} target="_blank "><img src={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"}></img></Link>
       </div>
       <div className={style.imgdes}>{data["des" + String(index+1)]}</div>
       </div>)
@@ -30,12 +30,17 @@ function Post ({ data, imgCount }){
     skills_list.push(<Link key={index} href={LOCAL_URL + '/projects?skills=' + index}><a className={style.skill_card}><b>{index.toUpperCase()}</b></a></Link>);
   }
 
-  let mylinks = ""
-  console.log(data.links == "NOLINK")
+  let mylinks = [];
+  for(const index of data.links.split(";")){
+    console.log(index);
+    mylinks.push(<li><a className={style.link_hover} href={index} target="_blank">{index}</a></li>);
+  }
   if(data.links != "NOLINK"){
     mylinks = <div className={style.text}>
       <div className={style.title}>Links</div>
-      <div>{data.links}</div>
+      <ul>
+        {mylinks}  
+      </ul>
     </div>
   }
   
