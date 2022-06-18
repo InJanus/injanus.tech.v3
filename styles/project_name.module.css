@@ -2,13 +2,10 @@
     padding-top: 10px;
     text-align: center;
     font-size: 26px;
+    margin-bottom: 0px;
 }
 
-.discription{
-    margin-top: 10px;
-}
-
-.learned{
+.text{
     margin-top: 10px;
 }
 
@@ -51,6 +48,25 @@
 
 .text_block{
     margin: 0px 10px 0px 10px;
+}
+
+.skills{
+    width:100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.date{
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.skill_card{
+    background-color: var(--burnt-sienna);
+    color: black;
+    margin: 0px 5px 5px 5px;
+    padding: 5px 10px 5px 10px;
 }
 
 @media screen and (max-width: 1020px){

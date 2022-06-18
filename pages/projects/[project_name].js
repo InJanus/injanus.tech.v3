@@ -1,5 +1,5 @@
 import Top_Nav from "../../components/top_nav";
-import { API_URL } from "../../public/properties";
+import { API_URL, LOCAL_URL } from "../../public/properties";
 import style from "../../styles/project_name.module.css";
 import Link from 'next/link';
 
@@ -24,6 +24,20 @@ function Post ({ data, imgCount }){
       <div className={style.imgdes}>{data["des" + String(index+1)]}</div>
       </div>)
   }
+
+  let skills_list = [];
+  for (const index of data.skills.split(";")){
+    skills_list.push(<Link key={index} href={LOCAL_URL + '/projects?skills=' + index}><a className={style.skill_card}><b>{index.toUpperCase()}</b></a></Link>);
+  }
+
+  let mylinks = ""
+  console.log(data.links == "NOLINK")
+  if(data.links != "NOLINK"){
+    mylinks = <div className={style.text}>
+      <div className={style.title}>Links</div>
+      <div>{data.links}</div>
+    </div>
+  }
   
   console.log(data);
   return (
@@ -32,6 +46,8 @@ function Post ({ data, imgCount }){
       <div className="center">
         <div>
           <h1 className={style.title}><b>{data.title}</b></h1>
+          <div className={style.date}>{data.date}</div>
+          <div className={style.skills}>{skills_list}</div>
           <div className={style.centered_img}>
             <div className={style.myimgs}>
               {pic_list}
@@ -39,14 +55,15 @@ function Post ({ data, imgCount }){
           </div>
           <div className="breakline"></div>
           <div className={style.text_block}>
-            <div className={style.discription}>
+            <div className={style.text}>
               <div className={style.title}>Discription</div>
               <div>{data.discription}</div>
             </div>
-            <div className={style.learned}>
+            <div className={style.text}>
               <div className={style.title}>Lessons Learned</div>
               <div>{data.learned}</div>
             </div>
+            {mylinks}
           </div>
         </div>
       </div>
