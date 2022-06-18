@@ -22,7 +22,7 @@
 .myimgs{
     width: 100%;
     height: fit-content;
-    display: grid;
+    display: inline-flex;
     grid-template-columns: repeat(6, 1fr);
     align-items: center;
     text-align: center;
@@ -71,11 +71,13 @@
 
 @media screen and (max-width: 1020px){
     .myimgs{
+        display: grid;
         grid-template-columns: repeat(3, 1fr);
     }
 }
 @media screen and (max-width: 500px){
     .myimgs{
+        display: grid;
         grid-template-columns: repeat(1, 1fr);
     }
 }
