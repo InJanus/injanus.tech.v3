@@ -62,6 +62,7 @@
   }
   .exmargin{
     margin: 0px 0px 0px 115px;
+    font-size: 12px;
   }
   .topgrid{
     grid-template-columns: 2fr 1fr;
