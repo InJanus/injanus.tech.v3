@@ -3,7 +3,7 @@ import { API_URL } from "../../public/properties";
 import style from "../../styles/project_name.module.css";
 import Link from 'next/link';
 
-function Post ({ data }){
+function Post ({ data, imgCount }){
   // console.log(data);
   //for this page it needs to implement all of the pictures
   //title, discription and what i learned from it
@@ -16,7 +16,7 @@ function Post ({ data }){
               {/* for right now it links to the api. i want to change this but this wont stop me from pushing the website without it */}
 
   let pic_list = [];
-  for (let index = 0; index < 6; index++){
+  for (let index = 0; index < imgCount.count; index++){
     pic_list.push(<div className={style.contentincard}>
       <div className={style.imgsize}>
         <Link href={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"}><img src={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"}></img></Link>
@@ -38,7 +38,7 @@ function Post ({ data }){
             </div>
           </div>
           <div className="breakline"></div>
-          <div>
+          <div className={style.text_block}>
             <div className={style.discription}>
               <div className={style.title}>Discription</div>
               <div>{data.discription}</div>
@@ -54,10 +54,17 @@ function Post ({ data }){
   );
 }
 
+async function getImgCount(project_name){
+  //just a general list of skills
+  const res = await fetch(API_URL + '/project/img_count/' + project_name);
+  const data = await res.json();
+  return data;
+}
+
 export async function getStaticPaths() {
     //need a way to get all the project names for the project pages
     //this is just an api call for all the project names
-    const res = await fetch(API_URL + '/project/get_project_card')
+    const res = await fetch(API_URL + '/project/project_names')
     const data = await res.json();
     
     const project_names = data.map((myrows) => ({
@@ -76,10 +83,13 @@ export async function getStaticProps({ params }) {
     // const res = await fetch(API_URL + '/project/project1');
     // const data = await res.json();
 
+
     const res = await fetch(API_URL + '/project/' + params.project_name)
     const data = await res.json();
+
+    const imgCount = await getImgCount(data.project_name);
     return {
-      props: { data }, // will be passed to the page component as props
+      props: { data, imgCount }, // will be passed to the page component as props
     }
 }
 
