@@ -168,7 +168,6 @@ def project_names():
         mytemp = {}
     con.commit()
     con.close()
-    print(mycards)
     return jsonify(mycards)
 
 @app.route("/api/project/img_count/<string:project_name>", methods=["GET"])
@@ -196,7 +195,6 @@ def img_count(project_name):
 
     con.commit()
     con.close()
-    print(count)
     return jsonify({"count": count})
 
 @app.route("/api/project/<string:project_name>", methods=['GET'])
