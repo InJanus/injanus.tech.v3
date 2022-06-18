@@ -2,6 +2,7 @@ import Top_Nav from "../../components/top_nav";
 import { API_URL, LOCAL_URL } from "../../public/properties";
 import style from "../../styles/project_name.module.css";
 import Link from 'next/link';
+import Image from 'next/image.js';
 
 function Post ({ data, imgCount }){
   // console.log(data);
@@ -19,7 +20,7 @@ function Post ({ data, imgCount }){
   for (let index = 0; index < imgCount.count; index++){
     pic_list.push(<div className={style.contentincard}>
       <div className={style.imgsize}>
-        <Link href={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"} target="_blank "><img src={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"}></img></Link>
+        <Link href={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"} target="_blank " passHref><Image src={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"} alt={index}></Image></Link>
       </div>
       <div className={style.imgdes}>{data["des" + String(index+1)]}</div>
       </div>)
@@ -33,7 +34,7 @@ function Post ({ data, imgCount }){
   let mylinks = [];
   for(const index of data.links.split(";")){
     console.log(index);
-    mylinks.push(<li><a className={style.link_hover} href={index} target="_blank">{index}</a></li>);
+    mylinks.push(<li><a className={style.link_hover} href={index} target="_blank" rel="noreferrer">{index}</a></li>);
   }
   if(data.links != "NOLINK"){
     mylinks = <div className={style.text}>

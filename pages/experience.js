@@ -1,6 +1,7 @@
 import Top_Nav from '../components/top_nav.js'
 import { API_URL } from "../public/properties";
 import style from '../styles/experience.module.css'
+import Image from 'next/image.js';
 
 function Experience_Card(props){ //make sure component names are uppaercase 
     //these also have to have the argument props to work with properties
@@ -23,7 +24,7 @@ function Experience_Card(props){ //make sure component names are uppaercase
             <div className={style.excontent}>
                 <div className={style.exoutline}>
                     <div className={style.imgsize}>
-                        <img src={props.img}/>
+                        <Image src={props.img} alt={props.title}/>
                     </div>
                 </div>
                 <div className={style.exmargin}>
