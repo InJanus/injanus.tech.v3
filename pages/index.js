@@ -5,7 +5,6 @@ import Project_Card from '../components/project_card';
 import { API_URL, LOCAL_URL } from "../public/properties"; //import api link
 import style from '../styles/index.module.css';
 import Link from 'next/link';
-import Image from 'next/image'
 
 async function getProjects(project_name){
   const res = await fetch(API_URL + '/project/' + project_name);
@@ -26,7 +25,7 @@ function connectionList(data){
   const list = [];
   let i = 0;
   while(data['connection_link' + i]){
-    list.push(<a key={i} href={data['connection_link' + i]} className={style.connection_img}><Image src={API_URL + '/connection_img/' + i + '.png'} alt={i}/></a>);
+    list.push(<a key={i} href={data['connection_link' + i]} className={style.connection_img}><img src={API_URL + '/connection_img/' + i + '.png'} alt={i}/></a>);
     i++;
   }
   return list;
@@ -72,7 +71,7 @@ export default function Index({ data, project1, project2, skills }){
         <div className='center'>
           <div className={style.header_padding}><b>{data[0].name}</b></div>
           <div className={style.topIMG}>
-            <div className={style.main_img}><Image src={API_URL + '/home_img/profile.png'} alt={data[0].name}/></div>
+            <div className={style.main_img}><img src={API_URL + '/home_img/profile.png'} alt={data[0].name}/></div>
             <div className={style.connections}>
               {/* list of connections to diffrent outlets
               email, github, linked in, facebook?,  */

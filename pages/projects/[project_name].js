@@ -2,7 +2,6 @@ import Top_Nav from "../../components/top_nav";
 import { API_URL, LOCAL_URL } from "../../public/properties";
 import style from "../../styles/project_name.module.css";
 import Link from 'next/link';
-import Image from 'next/image.js';
 
 function Post ({ data, imgCount }){
   // console.log(data);
@@ -20,7 +19,7 @@ function Post ({ data, imgCount }){
   for (let index = 0; index < imgCount.count; index++){
     pic_list.push(<div className={style.contentincard}>
       <div className={style.imgsize}>
-        <Link href={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"} target="_blank " passHref><Image src={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"} alt={index}></Image></Link>
+        <Link href={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"} target="_blank " passHref><img src={API_URL + "/project_img/" + data.project_name + "/" + index + ".png"} alt={index}></img></Link>
       </div>
       <div className={style.imgdes}>{data["des" + String(index+1)]}</div>
       </div>)
